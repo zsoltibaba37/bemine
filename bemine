@@ -1,0 +1,56 @@
+#!/bin/bash
+usage="
+ Usage:
+
+ bemine <folder name>	change the owner and group on specific folder
+
+ bemine all		change the owner and group on all files and folders
+
+ bemine -h		display this help and exit
+
+ bemine --help		display this help and exit
+
+
+		September 2017
+"
+#
+# Check the input field. If empty, exit the script.
+#
+case $1 in
+ "") echo ""
+     echo " Missing the folder name."
+     echo " $usage"
+     exit 1
+     ;;
+ "-h") echo ""
+       echo " $usage"
+       exit 0
+       ;;
+ "--help") echo ""
+           echo " $usage"
+           exit 0
+           ;;
+ "all") sudo chown pzsolti:pzsolti * 
+        chmod 770 *
+        exit 0
+        ;;
+esac
+#
+# Check the folder.
+#
+if [ ! -d $1 ]
+   then
+   echo " The folder not exists."
+   echo " Please check the folder name."
+   exit 1
+fi
+#
+# When everything's fine, rewrites owner and group rights in the folder.
+# sudo permission is required.
+#
+sudo chown pzsolti:pzsolti $1 && chmod 770 $1
+echo ""
+echo " The $1 folder rights has modified."
+echo ""
+exit 0
+
