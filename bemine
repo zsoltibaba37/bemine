@@ -2,7 +2,7 @@
 usage="
  Usage:
 
- bemine <folder name>	change the owner and group on specific folder
+ bemine <folder name>	change the owner and group on specific file or folder
 
  bemine all		change the owner and group on all files and folders
 
